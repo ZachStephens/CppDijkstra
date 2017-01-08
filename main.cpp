@@ -25,6 +25,9 @@ int main(int argc, char** argv) {
 	
 	//perform dijkstra
 	//path closestRoute(map,request)
+
+
+
 	//handle output
 	return 0;
 }

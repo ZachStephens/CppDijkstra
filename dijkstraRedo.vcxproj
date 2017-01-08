@@ -148,6 +148,7 @@
   <ItemGroup>
     <ClInclude Include="dijkstraRedo.h" />
     <ClInclude Include="DjMap.h" />
+    <ClInclude Include="myDijkstra.h" />
     <ClInclude Include="types.h" />
     <ClInclude Include="nbrNode.h" />
     <ClInclude Include="node.h" />
@@ -155,6 +156,7 @@
   <ItemGroup>
     <ClCompile Include="dijkstraRedo.cpp" />
     <ClCompile Include="DjMap.cpp" />
+    <ClCompile Include="myDijkstra.cpp" />
     <ClCompile Include="nbrNode.cpp" />
     <ClCompile Include="node.cpp" />
     <ClCompile Include="main.cpp" />
