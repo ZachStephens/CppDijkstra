@@ -37,14 +37,14 @@ DjMap* handleGraphInput(char* filename) {
 	dj_ptr = new DjMap(node_num, edge_num);
 
 
-	for (int i=0; i < node_num; i++) {
+	for (unsigned int i=0; i < node_num; i++) {
 		ifile >> temp_id;
 		ifile >> temp_x;
 		ifile >> temp_y;
 		dj_ptr->addNode(new node(temp_id,temp_x, temp_y));
 	}
 	cout << "finished adding nodes(" << dj_ptr->getNodeCount() << ")\n";
-	for (int i=0; i < edge_num; i++) {	
+	for (unsigned int i=0; i < edge_num; i++) {	
 		ifile >> nodeA;
 		ifile >> nodeB;
 		dj_ptr->addConnection(nodeA,nodeB);

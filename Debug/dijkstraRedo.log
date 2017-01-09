@@ -1,6 +1,2 @@
-﻿  main.cpp
-q:\cppprojects\dijkstraredo\dijkstraredo\dijkstraredo.h(40): warning C4018: '<': signed/unsigned mismatch
-q:\cppprojects\dijkstraredo\dijkstraredo\dijkstraredo.h(47): warning C4018: '<': signed/unsigned mismatch
-  DjMap.cpp
-  Generating Code...
+﻿  node.cpp
   dijkstraRedo.vcxproj -> Q:\CppProjects\dijkstraRedo\Debug\dijkstraRedo.exe

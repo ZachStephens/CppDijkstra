@@ -30,4 +30,6 @@ void node::addNbr(node * newNbr)
 
 void node::addNbr(node * newNbr, float dist)
 {
+	nbrList.push_back(newNbr);
+	nbrDist[newNbr->id] = (dist);
 }

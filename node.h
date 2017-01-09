@@ -1,5 +1,7 @@
 #pragma once
 #include <vector>
+#include <map>
+
 class node
 {	
 public:
@@ -12,11 +14,13 @@ public:
 	float getYpos(void) { return ypos; }
 	float getXpos(void) { return xpos; }
 	unsigned int getId(void) { return id; }
+	std::vector<node*> nbrList;
+	std::map<unsigned int, float> nbrDist;
 private:
 	unsigned int id;
 	float xpos;
 	float ypos;
-	std::vector<float> nbrDist;
-	std::vector<node*> nbrList;
+	
+	
 };
 

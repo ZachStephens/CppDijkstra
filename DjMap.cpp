@@ -1,4 +1,5 @@
 #include "DjMap.h"
+#include <map>
 #include <fstream>
 
 using namespace std;
@@ -20,7 +21,7 @@ DjMap::DjMap(unsigned int num_nodes, unsigned int num_edges)
 
 node * DjMap::getNode(unsigned int id)
 {
-	return nullptr;
+	return nodeMap[id];
 }
 
 void DjMap::addNode(node * newNode)
