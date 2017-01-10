@@ -3,6 +3,8 @@
 #include <iostream>
 #include <fstream>
 #include "types.h"
+#include "myDijkstra.h"
+
 using namespace std;
 
 

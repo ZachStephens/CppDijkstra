@@ -24,6 +24,8 @@ int main(int argc, char** argv) {
 	pathRequest = getQuery(djptr);
 	
 	//perform dijkstra
+	myDijkstra dijkstra = myDijkstra(djptr, &pathRequest);
+	dijkstra.PerformDijkstra();
 	//path closestRoute(map,request)
 
 

@@ -13,6 +13,13 @@ typedef struct djnode{
 	float total_dist;
 }DjNode;
 
+struct myCompare {
+	bool operator()(const DjNode* N1, const DjNode* N2) {
+		return N1->total_dist > N2->total_dist;
+	}
+};
+
+
 class myDijkstra
 {
 public:
@@ -21,15 +28,17 @@ public:
 	myDijkstra(DjMap* djptr,request* r1);
 	~myDijkstra();
 	void PerformDijkstra();
-	void findClosestAvailable();
-	void makeNbrAvailable(DjNode* closest);
+	DjNode* findClosestAvailable();
+	void makeNbrAvailable(DjNode* closest); 
+	void finishNode(DjNode * currentNode);
 	//bool isAvailable(unsigned int id);
 private:
 	unsigned int startID;
-	unsigned int destID;
+	unsigned int destID; 
 	DjMap * graph;
 	map<unsigned int,DjNode*> available;
+	map<unsigned int, DjNode*> finished;
 	vector<DjNode *> path;
-	vector<DjNode *> finished;	
+	priority_queue<DjNode*, vector<DjNode*>, myCompare> pq;
 };
 
