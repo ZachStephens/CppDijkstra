@@ -1,5 +1,6 @@
 #pragma once
 #include <iostream>
+#include "node.h"
 
 typedef struct djnode {
 	node* N;

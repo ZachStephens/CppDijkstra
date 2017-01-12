@@ -18,12 +18,19 @@ myDijkstra::myDijkstra(DjMap * djptr, request * r1)
 
 myDijkstra::~myDijkstra()
 {
+		//available
+	while (!dnodes.empty()) {
+		DjNode* tmp = dnodes.back();
+		dnodes.pop_back();
+		delete tmp;
+	}
+	
 }
 
 void myDijkstra::finishNode(DjNode * currentNode) {
 	available.erase(currentNode->N->getId());
 	finished[currentNode->N->getId()]=currentNode;
-	cout << "Finishing" << currentNode->N->getId() << endl;
+	//cout << "Finishing" << currentNode->N->getId() << endl;
 
 }
 
@@ -45,23 +52,39 @@ void myDijkstra::writePath(DjNode * currentNode)
 void myDijkstra::putNode(DjNode * node1)
 {
 	unsigned int i = 0;
-	unsigned int j = closest.size() - 1;
-	unsigned int k;
+	unsigned int j,k;
 
 	if (closest.empty()){
 		closest.push_front(node1);
 		}	
 	else
 	{
-		k = (j-k) / 2 + k;
-		while () {
+		if (node1->total_dist < closest.front()->total_dist) {
+			closest.push_front(node1);
+			return;
+		}
+
+		j = closest.size() - 1;
+		k = (j-i) / 2 + i;
+		while (i<j) {
 			if (node1->total_dist < closest[k]->total_dist) 
 				j = k - 1;
 			else 
 				i = k + 1;
 		
-			k = ((j - k) / 2) + k;
+			k = ((j - i) / 2) + i;
 		}
+		if (node1->total_dist < closest[i]->total_dist)
+		{
+			closest.insert(closest.begin() + i, node1);	
+		}
+		else{
+			if (closest.size()==(i+1)) 
+				closest.push_back(node1);
+			else
+				closest.insert(closest.begin()+(i+1), node1);
+		}
+			
 	}
 }
 
@@ -81,9 +104,10 @@ void myDijkstra::makeNbrAvailable(DjNode * closest)
 			tmpDN->N = *iter;
 			tmpDN->prevHop = closest;
 			tmpDN->total_dist = tempDist;
-			cout << "Adding " << tempID << endl;
+			//cout << "Adding " << tempID << endl;
 			available[tempID] = tmpDN;
-			//pq.push(tmpDN);
+			putNode(tmpDN);
+			dnodes.push_back(tmpDN);
 		}
 		else if (tempDist < available[tempID]->total_dist) {
 			available[tempID]->total_dist = tempDist;
@@ -101,9 +125,9 @@ void myDijkstra::PerformDijkstra()
 	available[currentNode->N->getId()] = currentNode;
 
 
-	cout <<"Available size is: "<< available.size() << endl;
+	//cout <<"Available size is: "<< available.size() << endl;
 	cout << currentNode->N->getId() << " " << destID << endl;
-	cout << "available size: " << available.size()<< endl;
+	//cout << "available size: " << available.size()<< endl;
 
 
 	while (((currentNode->N)->getId() != destID)
@@ -115,7 +139,7 @@ void myDijkstra::PerformDijkstra()
 		finishNode(currentNode);
 		//get closest
 		currentNode = findClosestAvailable();
-		cout << currentNode->N->getId() << endl;
+		//cout << currentNode->N->getId() << endl;
 	}
 	cout << "out of while\n";
 	if ((currentNode->N)->getId() == destID)
@@ -126,6 +150,7 @@ void myDijkstra::PerformDijkstra()
 
 DjNode * myDijkstra::findClosestAvailable()
 {
-	
-	return NULL;
+	DjNode* tmp = closest.front();
+	closest.pop_front();
+	return tmp;
 }

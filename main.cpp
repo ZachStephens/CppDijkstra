@@ -20,7 +20,7 @@ int main(int argc, char** argv) {
 		cout << "Attempting to open " << argv[1] << " " << endl;
 	}
 	DjMap* djptr = handleGraphInput(argv[1]);
-	while (1) {
+
 	pathRequest = getQuery(djptr);
 
 	//perform dijkstra
@@ -28,7 +28,7 @@ int main(int argc, char** argv) {
 	dijkstra.PerformDijkstra();
 	//path closestRoute(map,request)
 
-	}	
+	
 
 	//handle output
 	//return 0;

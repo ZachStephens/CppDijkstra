@@ -39,6 +39,7 @@ private:
 	void putNode(DjNode* node1);
 	vector<DjNode *> path;
 	deque<DjNode*> closest;
+	vector<DjNode*> dnodes;
 	//priority_queue<DjNode*, vector<DjNode*>, myCompare> pq;
 };
 

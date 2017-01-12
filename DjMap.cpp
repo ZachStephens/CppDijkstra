@@ -11,6 +11,10 @@ DjMap::DjMap()
 
 DjMap::~DjMap()
 {
+	for (std::map<unsigned int, node*>::iterator itr = nodeMap.begin(); itr != nodeMap.end(); itr++)
+	{
+		delete itr->second;
+	}
 }
 
 DjMap::DjMap(unsigned int num_nodes, unsigned int num_edges)
