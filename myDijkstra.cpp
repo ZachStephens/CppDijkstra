@@ -27,6 +27,44 @@ void myDijkstra::finishNode(DjNode * currentNode) {
 
 }
 
+void myDijkstra::writePath(DjNode * currentNode)
+{
+	DjNode* tmpNode = currentNode;
+	vector<DjNode*> pathVector;
+	while(tmpNode != NULL){
+		pathVector.push_back(tmpNode);
+		tmpNode = tmpNode->prevHop;	
+	}
+	while (!pathVector.empty()) {
+		cout << pathVector.back()->N->getId()<< ", ";
+		pathVector.pop_back();
+	}
+		
+}
+
+void myDijkstra::putNode(DjNode * node1)
+{
+	unsigned int i = 0;
+	unsigned int j = closest.size() - 1;
+	unsigned int k;
+
+	if (closest.empty()){
+		closest.push_front(node1);
+		}	
+	else
+	{
+		k = (j-k) / 2 + k;
+		while () {
+			if (node1->total_dist < closest[k]->total_dist) 
+				j = k - 1;
+			else 
+				i = k + 1;
+		
+			k = ((j - k) / 2) + k;
+		}
+	}
+}
+
 void myDijkstra::makeNbrAvailable(DjNode * closest)
 {
 	unsigned int tempID;
@@ -45,7 +83,7 @@ void myDijkstra::makeNbrAvailable(DjNode * closest)
 			tmpDN->total_dist = tempDist;
 			cout << "Adding " << tempID << endl;
 			available[tempID] = tmpDN;
-			pq.push(tmpDN);
+			//pq.push(tmpDN);
 		}
 		else if (tempDist < available[tempID]->total_dist) {
 			available[tempID]->total_dist = tempDist;
@@ -73,18 +111,21 @@ void myDijkstra::PerformDijkstra()
 		//add nbrs
 		makeNbrAvailable(currentNode);
 		//remove closest from available to finished
-		cout << "Available size is: " << available.size() << endl;
+		//cout << "Available size is: " << available.size() << endl;
 		finishNode(currentNode);
 		//get closest
 		currentNode = findClosestAvailable();
 		cout << currentNode->N->getId() << endl;
-	}	
+	}
+	cout << "out of while\n";
+	if ((currentNode->N)->getId() == destID)
+		writePath(currentNode);
+
 	cout << "finished dijkstra\n";
 }
 
 DjNode * myDijkstra::findClosestAvailable()
 {
-	DjNode* topNode = pq.top();
-	pq.pop();
-	return topNode;
+	
+	return NULL;
 }

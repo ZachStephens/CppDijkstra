@@ -5,13 +5,10 @@
 #include <map>
 #include <vector>
 #include <list>
+#include <deque>
 using namespace std;
 
-typedef struct djnode{
-	node* N;
-	struct djnode * prevHop;
-	float total_dist;
-}DjNode;
+
 
 struct myCompare {
 	bool operator()(const DjNode* N1, const DjNode* N2) {
@@ -31,6 +28,7 @@ public:
 	DjNode* findClosestAvailable();
 	void makeNbrAvailable(DjNode* closest); 
 	void finishNode(DjNode * currentNode);
+	void writePath(DjNode* currentNode);
 	//bool isAvailable(unsigned int id);
 private:
 	unsigned int startID;
@@ -38,7 +36,9 @@ private:
 	DjMap * graph;
 	map<unsigned int,DjNode*> available;
 	map<unsigned int, DjNode*> finished;
+	void putNode(DjNode* node1);
 	vector<DjNode *> path;
-	priority_queue<DjNode*, vector<DjNode*>, myCompare> pq;
+	deque<DjNode*> closest;
+	//priority_queue<DjNode*, vector<DjNode*>, myCompare> pq;
 };
 

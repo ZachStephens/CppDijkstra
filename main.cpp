@@ -13,23 +13,23 @@ int main(int argc, char** argv) {
 	request pathRequest;
 
 	if (argc < 2) {
-		cout << "Too few Arguents"<< endl;
+		cout << "Too few Arguents" << endl;
 		return -1;
 	}
 	else {
-		cout << "Attempting to open "<<argv[1] << " " << endl;
+		cout << "Attempting to open " << argv[1] << " " << endl;
 	}
 	DjMap* djptr = handleGraphInput(argv[1]);
-
+	while (1) {
 	pathRequest = getQuery(djptr);
-	
+
 	//perform dijkstra
 	myDijkstra dijkstra = myDijkstra(djptr, &pathRequest);
 	dijkstra.PerformDijkstra();
 	//path closestRoute(map,request)
 
-
+	}	
 
 	//handle output
-	return 0;
+	//return 0;
 }
